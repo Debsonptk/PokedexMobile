@@ -1,12 +1,24 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BaseScreen } from 'screens/BaseScreen';
+import { ParamListBase } from '@react-navigation/native';
+import {
+  NativeStackScreenProps,
+  createNativeStackNavigator,
+} from '@react-navigation/native-stack';
+import { PokemonsScreen } from 'screens/PokemonsScreen';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamsListType = {
+  Pokemons: NativeStackScreenProps<ParamListBase>;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamsListType>();
 
 const Routes: React.FC = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Base" component={BaseScreen} />
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Pokemons" component={PokemonsScreen} />
     </Stack.Navigator>
   );
 };
