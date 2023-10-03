@@ -1,24 +1,29 @@
 import { useCallback, useEffect } from 'react';
 import { Image, Text, View } from '@gluestack-ui/themed';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { FlatList, ImageBackground } from 'react-native';
+import LottieView from 'lottie-react-native';
+import { Dimensions, FlatList, ImageBackground } from 'react-native';
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import Background from 'assets/background.png';
 import Profile from 'assets/profile.png';
+import { PokemonCard } from 'components/PokemonCard';
 import { usePokemon } from 'contexts/PokemonContext';
 import { RootStackParamsListType } from 'routes/index';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type BaseScreenType = NativeStackScreenProps<
+type BasePokemonType = NativeStackScreenProps<
   RootStackParamsListType,
   'Pokemons'
 >;
 
-const Screen: React.FC<BaseScreenType> = () => {
-  const { fetchPokemons, pokemons } = usePokemon();
+const numColumns = Dimensions.get('screen').width > 320 ? 2 : 1;
+
+const Screen: React.FC<BasePokemonType> = ({ navigation }) => {
+  const { fetchPokemons, pokemons, fetchNextPage, loading, hasMorePages } =
+    usePokemon();
   const insets = useSafeAreaInsets();
 
   const Header = useCallback(
@@ -30,6 +35,21 @@ const Screen: React.FC<BaseScreenType> = () => {
       </View>
     ),
     [],
+  );
+
+  const Footer = useCallback(
+    () =>
+      hasMorePages ? (
+        <View flex={1} justifyContent="center" alignItems="center" my={16}>
+          <LottieView
+            // eslint-disable-next-line global-require
+            source={require('../../assets/animations/pokeLoading.json')}
+            style={{ width: 80, height: 80 }}
+            autoPlay
+          />
+        </View>
+      ) : undefined,
+    [hasMorePages],
   );
 
   useEffect(() => {
@@ -73,7 +93,20 @@ const Screen: React.FC<BaseScreenType> = () => {
         contentContainerStyle={{ marginHorizontal: 16 }}
         numColumns={2}
         data={pokemons}
-        renderItem={({ item }) => <Text flex={1}>{item.name}</Text>}
+        renderItem={({ item }) => (
+          <PokemonCard
+            pokemon={item}
+            onPress={() =>
+              navigation.navigate('Pokemon', {
+                name: item.name,
+              })
+            }
+          />
+        )}
+        keyExtractor={(_, index) => index.toString()}
+        onEndReached={!loading && hasMorePages ? fetchNextPage : undefined}
+        {...(numColumns > 1 ? { columnWrapperStyle: { columnGap: 16 } } : {})}
+        ListFooterComponent={Footer}
       />
     </SafeAreaView>
   );
