@@ -52,10 +52,9 @@ const Component: React.FC<IPokemonCardProps> = ({ pokemon, onPress }) => {
               borderRadius="$full"
               mr="auto"
               mb={4}
+              key={type}
             >
-              <Text color={colors.name} key={type}>
-                {unslugify(type)}
-              </Text>
+              <Text color={colors.name}>{unslugify(type)}</Text>
             </View>
           ))}
         </View>

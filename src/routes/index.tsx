@@ -5,11 +5,12 @@ import {
 } from '@react-navigation/native-stack';
 import { PokemonScreen } from 'screens/PokemonScreen';
 import { PokemonsScreen } from 'screens/PokemonsScreen';
+import { PokemonType } from 'types/PokemonType';
 
 export type RootStackParamsListType = {
   Pokemons: NativeStackScreenProps<ParamListBase>;
   Pokemon: {
-    name: string;
+    pokemon: PokemonType;
   };
 };
 

@@ -32,6 +32,7 @@ interface IContextProps {
     OperationVariables
   >;
   fetchNextPage: () => void;
+  setPokemon: React.Dispatch<React.SetStateAction<PokemonType | null>>;
 }
 
 interface IPokemonProviderProps {
@@ -95,6 +96,7 @@ export const PokemonProvider: React.FC<IPokemonProviderProps> = ({
           fetchPokemons,
           fetchPokemon,
           fetchNextPage,
+          setPokemon,
         }),
         [
           loading,
@@ -105,6 +107,7 @@ export const PokemonProvider: React.FC<IPokemonProviderProps> = ({
           pokemon,
           hasMorePages,
           fetchNextPage,
+          setPokemon,
         ],
       )}
     >
