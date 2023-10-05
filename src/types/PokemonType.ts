@@ -38,7 +38,7 @@ export type PokemonType = {
   weight?: number;
   color: string;
   types: string[];
-  image: string | null;
+  image: string | undefined;
   gender?: { m: number; f: number };
   description?: string;
   move?: string;

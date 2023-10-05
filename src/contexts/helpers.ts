@@ -35,7 +35,7 @@ export const normalizePokemonsQueryResults = (
     },
     image:
       `${JSON.parse(item?.images[0]?.sprites)?.other?.['official-artwork']
-        ?.front_default}`.replace('/media', API_SPRITES_BASE_URL) ?? null,
+        ?.front_default}`.replace('/media', API_SPRITES_BASE_URL) ?? undefined,
     description: item.specy?.descriptions?.[0]?.text ?? undefined,
     move: item.moves?.[0]?.move?.name ?? undefined,
     stats:
