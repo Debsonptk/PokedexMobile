@@ -32,7 +32,7 @@ const Screen: React.FC<BasePokemonType> = ({ navigation }) => {
     () => (
       <View my={40}>
         <Text fontSize={24} bold lineHeight={31.2}>
-          Qual Pokémon você escolhe?
+          Which Pokémon would you choose?
         </Text>
       </View>
     ),
@@ -71,12 +71,12 @@ const Screen: React.FC<BasePokemonType> = ({ navigation }) => {
         >
           <View flex={1} mb={48} ml={22}>
             <Text fontSize={20} color="$white">
-              Olá,{' '}
+              Hello,{' '}
               <Text fontSize={20} bold color="$white">
                 Ash Ketchum
               </Text>
             </Text>
-            <Text color="white">Bem Vindo!😄</Text>
+            <Text color="white">Wellcome!😄</Text>
           </View>
           <ImageBackground
             source={Background}
