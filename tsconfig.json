@@ -10,6 +10,7 @@
       "env/*": ["./src/env/*"],
       "helpers/*": ["./src/helpers/*"],
       "hooks/*": ["./src/hooks/*"],
+      "config/*": ["./src/config/*"],
       "routes/*": ["./src/routes/*"],
       "screens/*": ["./src/screens/*"],
       "services/*": ["./src/services/*"],

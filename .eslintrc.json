@@ -64,6 +64,7 @@
           "module",
           "/^assets/",
           "/^components/",
+          "/^config/",
           "/^contexts/",
           "/^env/",
           "/^helpers/",

@@ -1,4 +1,4 @@
-import { Config } from 'src/config';
+import { Config } from 'config/index';
 import { PokemonType, PokemonsQueryResultsArrayType } from 'types/PokemonType';
 
 export const calcMaleGenderRatePercent = (value: number): number => {
