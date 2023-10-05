@@ -1,4 +1,4 @@
-import { API_SPRITES_BASE_URL } from '@env';
+import { Config } from 'src/config';
 import { PokemonType, PokemonsQueryResultsArrayType } from 'types/PokemonType';
 
 export const calcMaleGenderRatePercent = (value: number): number => {
@@ -35,7 +35,7 @@ export const normalizePokemonsQueryResults = (
     },
     image:
       `${JSON.parse(item?.images[0]?.sprites)?.other?.['official-artwork']
-        ?.front_default}`.replace('/media', API_SPRITES_BASE_URL) ?? undefined,
+        ?.front_default}`.replace('/media', Config.spritesBaseUrl) ?? undefined,
     description: item.specy?.descriptions?.[0]?.text ?? undefined,
     move: item.moves?.[0]?.move?.name ?? undefined,
     stats:
